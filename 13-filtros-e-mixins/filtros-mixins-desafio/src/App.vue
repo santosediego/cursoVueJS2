@@ -1,36 +1,53 @@
 <template>
-	<div id="app">
-		<h1>Filtros & Mixins (Desafio)</h1>
-		<!-- Exercício 1 -->
-		<!-- Construir um filtro local que troca espaços por vírgula -->
-		
-		<!-- Exercício 2 -->
-		<!-- Filtro global que conta o tamanho de cada palavra e adiciona o 
+  <div id="app">
+    <h1>Filtros & Mixins (Desafio)</h1>
+    <!-- Exercício 1 -->
+    <!-- Construir um filtro local que troca espaços por vírgula -->
+    <p>{{ "banana canela maça" | trocarPorVirgula }}</p>
+
+    <!-- Exercício 2 -->
+    <!-- Filtro global que conta o tamanho de cada palavra e adiciona o 
 			valor na string final -->
-		<!-- "Pedro é legal" => "Pedro (5) é (1) legal (5)" -->
+    <!-- "Pedro é legal" => "Pedro (5) é (1) legal (5)" -->
+    <p>{{ "Pedro é legal" | contador }}</p>
 
-		<!-- Exercício 3 -->
-		<!-- Implementar os exercicios 1 e 2 com propriedade computada -->
+    <!-- Exercício 3 -->
+    <!-- Implementar os exercicios 1 e 2 com propriedade computada -->
+    <p>{{ espacoEmVirgula }}</p>
+    <p>{{ conteTamanho }}</p>
 
-		<!-- Exercício 4 -->
-		<!-- Compartilhe a propriedade computada via mixin -->
-	</div>
+    <!-- Exercício 4 -->
+    <!-- Compartilhe a propriedade computada via mixin -->
+  </div>
 </template>
 
 <script>
+import exercicio4Mixins from './exercicio4Mixins';
+
 export default {
-	
-}
+  mixins: [exercicio4Mixins],
+  data() {
+    return {
+      frase: "Pedro é legal demais uai",
+    };
+  },
+  filters: {
+    trocarPorVirgula(valor) {
+      const newString = `${valor}`.replace(/ /g, ",");
+      return newString;
+    },
+  },
+};
 </script>
 
 <style>
 #app {
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-	font-size: 2.5rem;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  font-size: 2.5rem;
 }
 </style>
